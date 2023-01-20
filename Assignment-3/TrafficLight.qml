@@ -3,10 +3,12 @@ import QtQuick 2.5
 Rectangle {
     width: 150
     height: width * 2.5
-    border.color: "black"
+    color: "black"
+    border.color: "grey"
     id: root
     property color black: "lightgrey"
     property int duration: 1000
+    radius: width * 0.2
 
     Rectangle {
         id: redlight
