@@ -4,5 +4,6 @@
         <file>TrafficLight.qml</file>
         <file>assets/Car.png</file>
         <file>assets/Road.jpg</file>
+        <file>Road.qml</file>
     </qresource>
 </RCC>

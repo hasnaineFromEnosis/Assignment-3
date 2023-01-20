@@ -15,6 +15,7 @@ Window {
         border.color: "green"
 
         Rectangle {
+            id: trafficLightContainer
             height: maincontainer.height
             width: maincontainer.width / 6
             x:0
@@ -33,6 +34,33 @@ Window {
                 width: maincontainer.width * 45 / 600
                 x: maincontainer.width * 20 / 600
                 y: (maincontainer.width * 40 / 600) + height
+            }
+        }
+
+        Rectangle {
+            id: roadContainer
+            width: maincontainer.width - trafficLightContainer.width
+            height: maincontainer.height
+            anchors.left: trafficLightContainer.right
+            x: trafficLightContainer.width
+            border.color: "orange"
+
+            Rectangle {
+                id: roadSubContainer
+                width: Math.min(roadContainer.width, roadContainer.height)
+                height: width
+                anchors.centerIn: roadContainer
+                border.color: "black"
+
+
+                Road {
+                    width: roadSubContainer.width
+                }
+
+                Road {
+                    width: roadSubContainer.width
+                    rotation: 90
+                }
             }
         }
     }

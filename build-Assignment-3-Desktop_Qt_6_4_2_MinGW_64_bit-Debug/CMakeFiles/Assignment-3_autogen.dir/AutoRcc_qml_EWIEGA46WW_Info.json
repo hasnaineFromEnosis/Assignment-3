@@ -7,6 +7,7 @@
 	"INCLUDE_DIR" : "C:/Users/hasnaine/Documents/QT Practice/Assignment-3/build-Assignment-3-Desktop_Qt_6_4_2_MinGW_64_bit-Debug/Assignment-3_autogen/include",
 	"INPUTS" : 
 	[
+		"C:/Users/hasnaine/Documents/QT Practice/Assignment-3/Assignment-3/Road.qml",
 		"C:/Users/hasnaine/Documents/QT Practice/Assignment-3/Assignment-3/TrafficLight.qml",
 		"C:/Users/hasnaine/Documents/QT Practice/Assignment-3/Assignment-3/main.qml",
 		"C:/Users/hasnaine/Documents/QT Practice/Assignment-3/Assignment-3/assets/Car.png",
