@@ -16,5 +16,12 @@ Rectangle {
             source: "assets/Road.jpg"
             anchors.fill: parent
         }
+
+        Image {
+            id: carImage
+            source: "assets/Car.png"
+            height: parent.height
+            width: height * 1.5
+        }
     }
 }
