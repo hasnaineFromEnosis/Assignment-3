@@ -9,6 +9,7 @@ Rectangle {
     property color black: "lightgrey"
     property int duration: 1000
     radius: width * 0.2
+    state: "stop"
 
     Rectangle {
         id: redlight
@@ -36,39 +37,90 @@ Rectangle {
         color: root.black
         border.color: "black"
     }
-    state: "stop"
 
     states: [
         State {
             name: "stop"
+            PropertyChanges { target: yellowlight; color: root.black}
             PropertyChanges { target: redlight; color: "red"}
-            PropertyChanges { target: greenlight; color: root.black }
+        },
+        State {
+            name: "wait"
+            PropertyChanges { target: redlight; color: root.black}
+            PropertyChanges { target: greenlight; color: root.black}
+
+            PropertyChanges { target: yellowlight; color: "yellow"}
+
         },
         State {
             name: "go"
-            PropertyChanges { target: redlight; color: root.black }
+            PropertyChanges { target: yellowlight; color: root.black}
             PropertyChanges { target: greenlight; color: "green" }
         }
     ]
 
     transitions: [
         Transition {
-            from: "stop"; to: "go"
+            from: "stop"; to: "wait"
             //            from: "*"; to: "*"
-            ColorAnimation { target: redlight; properties: "color"; duration: root.duration }
-            ColorAnimation { target: greenlight; properties: "color"; duration: root.duration }
+            ColorAnimation { target: redlight; properties: "color"; duration: root.duration * 0.5 }
+            ColorAnimation { target: greenlight; properties: "color"; duration: root.duration * 0.5 }
+            ColorAnimation { target: yellowlight; properties: "color"; duration: root.duration * 0.5 }
         },
 
         Transition {
-            from: "go"; to: "stop"
-            //            from: "*"; to: "*"
-            ColorAnimation { target: redlight; properties: "color"; duration: root.duration }
-            ColorAnimation { target: greenlight; properties: "color"; duration: root.duration }
+            from: "go"; to: "wait"
+            ColorAnimation { target: redlight; properties: "color"; duration: root.duration * 0.5 }
+            ColorAnimation { target: greenlight; properties: "color"; duration: root.duration * 0.5 }
+            ColorAnimation { target: yellowlight; properties: "color"; duration: root.duration * 0.5 }
+        },
+
+        Transition {
+            from: "wait"; to: "stop"
+            ColorAnimation { target: yellowlight; properties: "color"; duration: root.duration * 0.5 }
+            ColorAnimation { target: redlight; properties: "color"; duration: root.duration * 0.5 }
+        },
+
+        Transition {
+            from: "wait"; to: "go"
+            ColorAnimation { target: yellowlight; properties: "color"; duration: root.duration * 0.5 }
+            ColorAnimation { target: greenlight; properties: "color"; duration: root.duration * 0.5 }
         }
     ]
 
     MouseArea {
         anchors.fill: parent
-        onClicked: parent.state = (parent.state === "stop"? "go" : "stop")
+        onClicked: changeState()
+    }
+
+    Timer {
+        id: timer
+        function setTimeout(cb, delayTime) {
+            timer.interval = delayTime;
+            timer.repeat = false;
+            timer.triggered.connect(cb);
+            timer.triggered.connect(function release () {
+                timer.triggered.disconnect(cb); // This is important
+                timer.triggered.disconnect(release); // This is important as well
+            });
+            timer.start();
+        }
+    }
+
+
+    function changeState() {
+        console.log("pressed")
+        if(root.state === "stop") {
+            console.log("Waiting for go")
+            root.state = "wait"
+            timer.setTimeout(function(){
+                   root.state = "go"
+            }, root.duration * 0.5);
+        } else {
+            root.state = "wait"
+            timer.setTimeout(function(){
+                   root.state = "stop"
+            }, root.duration * 0.5);
+        }
     }
 }

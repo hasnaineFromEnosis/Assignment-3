@@ -8,23 +8,32 @@ Window {
     title: qsTr("Traffic Light Simulator")
 
     Rectangle {
-        width: Math.min(parent.width,parent.height * 2)
-        height: width / 2
+        width: Math.min(parent.width,parent.height * 1.8)
+        height: width / 1.8
+        id: maincontainer
 
         border.color: "green"
 
-        TrafficLight {
-            id: trafficlight1
-            width: parent.width * 45 / 600
-            x: parent.width * 20 / 600
-            y: parent.width * 20 / 600
-        }
+        Rectangle {
+            height: maincontainer.height
+            width: maincontainer.width / 6
+            x:0
+            y:0
+            border.color: "red"
 
-        TrafficLight {
-            id: trafficlight2
-            width: parent.width * 45 / 600
-            x: parent.width * 20 / 600
-            y: (parent.width * 40 / 600) + height
+            TrafficLight {
+                id: trafficlight1
+                width: maincontainer.width * 45 / 600
+                x: maincontainer.width * 20 / 600
+                y: maincontainer.width * 20 / 600
+            }
+
+            TrafficLight {
+                id: trafficlight2
+                width: maincontainer.width * 45 / 600
+                x: maincontainer.width * 20 / 600
+                y: (maincontainer.width * 40 / 600) + height
+            }
         }
     }
 }
