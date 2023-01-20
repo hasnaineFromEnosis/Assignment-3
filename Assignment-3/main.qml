@@ -5,7 +5,7 @@ Window {
     width: 640
     height: 480
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Traffic Light Simulator")
 
     Rectangle {
         width: Math.min(parent.width,parent.height * 2)
