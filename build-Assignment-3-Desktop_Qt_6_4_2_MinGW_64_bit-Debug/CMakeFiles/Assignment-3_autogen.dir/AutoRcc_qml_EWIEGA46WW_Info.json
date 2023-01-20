@@ -8,7 +8,9 @@
 	"INPUTS" : 
 	[
 		"C:/Users/hasnaine/Documents/QT Practice/Assignment-3/Assignment-3/TrafficLight.qml",
-		"C:/Users/hasnaine/Documents/QT Practice/Assignment-3/Assignment-3/main.qml"
+		"C:/Users/hasnaine/Documents/QT Practice/Assignment-3/Assignment-3/main.qml",
+		"C:/Users/hasnaine/Documents/QT Practice/Assignment-3/Assignment-3/assets/Car.png",
+		"C:/Users/hasnaine/Documents/QT Practice/Assignment-3/Assignment-3/assets/Road.jpg"
 	],
 	"LOCK_FILE" : "C:/Users/hasnaine/Documents/QT Practice/Assignment-3/build-Assignment-3-Desktop_Qt_6_4_2_MinGW_64_bit-Debug/CMakeFiles/Assignment-3_autogen.dir/AutoRcc_qml_EWIEGA46WW_Lock.lock",
 	"MULTI_CONFIG" : false,

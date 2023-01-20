@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>TrafficLight.qml</file>
+        <file>assets/Car.png</file>
+        <file>assets/Road.jpg</file>
     </qresource>
 </RCC>

@@ -1,49 +1,51 @@
 import QtQuick 2.5
 
-Item {
-    width: 500
-    height: 500
-
+Rectangle {
+    width: 150
+    height: width * 2.5
+    border.color: "black"
     id: root
-
     property color black: "lightgrey"
+    property int duration: 1000
 
     Rectangle {
-        width: 150
-        height: 300
+        id: redlight
+        x: root.width / 6; y: root.width * 15 / 150
+        width: root.width / 1.5; height: width
+        radius: width/2
+        color: root.black
         border.color: "black"
-
-        Rectangle {
-            id: light1
-            x: 25; y: 15
-            width: 100; height: width
-            radius: width/2
-            color: root.black
-            border.color: "black"
-        }
-
-        Rectangle {
-            id: light2
-            x: 25; y: 135
-            width: 100; height: width
-            radius: width/2
-            color: root.black
-            border.color: "black"
-        }
     }
 
+    Rectangle {
+        id: yellowlight
+        x: root.width / 6; y: root.width * 135 / 150
+        width: root.width / 1.5; height: width
+        radius: width/2
+        color: root.black
+        border.color: "black"
+    }
+
+    Rectangle {
+        id: greenlight
+        x: root.width / 6; y: root.width * 255 / 150
+        width: root.width / 1.5; height: width
+        radius: width/2
+        color: root.black
+        border.color: "black"
+    }
     state: "stop"
 
     states: [
         State {
             name: "stop"
-            PropertyChanges { target: light1; color: "red"}
-            PropertyChanges { target: light2; color: root.black }
+            PropertyChanges { target: redlight; color: "red"}
+            PropertyChanges { target: greenlight; color: root.black }
         },
         State {
             name: "go"
-            PropertyChanges { target: light1; color: root.black }
-            PropertyChanges { target: light2; color: "green" }
+            PropertyChanges { target: redlight; color: root.black }
+            PropertyChanges { target: greenlight; color: "green" }
         }
     ]
 
@@ -51,15 +53,15 @@ Item {
         Transition {
             from: "stop"; to: "go"
             //            from: "*"; to: "*"
-            ColorAnimation { target: light1; properties: "color"; duration: 2000 }
-            ColorAnimation { target: light2; properties: "color"; duration: 2000 }
+            ColorAnimation { target: redlight; properties: "color"; duration: root.duration }
+            ColorAnimation { target: greenlight; properties: "color"; duration: root.duration }
         },
 
         Transition {
             from: "go"; to: "stop"
             //            from: "*"; to: "*"
-            ColorAnimation { target: light1; properties: "color"; duration: 2000 }
-            ColorAnimation { target: light2; properties: "color"; duration: 2000 }
+            ColorAnimation { target: redlight; properties: "color"; duration: root.duration }
+            ColorAnimation { target: greenlight; properties: "color"; duration: root.duration }
         }
     ]
 

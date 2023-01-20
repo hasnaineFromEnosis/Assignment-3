@@ -6,4 +6,8 @@ Window {
     height: 480
     visible: true
     title: qsTr("Hello World")
+
+    TrafficLight {
+        width: parent.width * 150 / 640
+    }
 }
