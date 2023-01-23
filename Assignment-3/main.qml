@@ -13,6 +13,7 @@ Window {
         id: maincontainer
 
         border.color: "green"
+        property bool isRoad1Open: true
 
         Rectangle {
             id: trafficLightContainer
@@ -27,6 +28,7 @@ Window {
                 width: maincontainer.width * 45 / 600
                 x: maincontainer.width * 20 / 600
                 y: maincontainer.width * 20 / 600
+                state: "go"
             }
 
             TrafficLight {
@@ -41,8 +43,15 @@ Window {
                 width: trafficLightContainer.width
                 x:0
                 y: trafficLightContainer.height - this.height
+                text: {
+                    if (maincontainer.isRoad1Open == true) {
+                        return "Open Vertical Road"
+                    } else {
+                        return "Open Horizontal Road"
+                    }
+                }
 
-
+                onClicked: toggleTrafficLight()
             }
         }
 
@@ -70,6 +79,16 @@ Window {
                     rotation: 90
                 }
             }
+        }
+    }
+
+    function toggleTrafficLight() {
+        if(maincontainer.isRoad1Open === true) {
+            maincontainer.isRoad1Open = false
+            controlButton.text = "Open Horizontal Road"
+        } else {
+            maincontainer.isRoad1Open = true
+            controlButton.text = "Open Vertical Road"
         }
     }
 }

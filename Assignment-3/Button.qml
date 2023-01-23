@@ -8,7 +8,7 @@ Rectangle {
     property alias text: label.text
     signal clicked
 
-    width: 116; height: width * (26/116)
+    width: 116; height: width * (30/116)
     color: "lightsteelblue"
     border.color: "slategrey"
 
@@ -16,6 +16,8 @@ Rectangle {
         id: label
         anchors.centerIn: parent
         text: "Start"
+        font.pointSize: root.height * (8.0 / 30.0)
+        fontSizeMode: Text.Fit
     }
     MouseArea {
         anchors.fill: parent
