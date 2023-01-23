@@ -73,11 +73,21 @@ Window {
                 Road {
                     id: road1
                     width: roadSubContainer.width
-                    state: "start"
                 }
 
                 Road {
                     id: road2
+                    width: roadSubContainer.width
+                    rotation: 90
+                }
+
+                Car {
+                    id: car1
+                    width: roadSubContainer.width
+                }
+
+                Car {
+                    id: car2
                     width: roadSubContainer.width
                     rotation: 90
                 }
@@ -109,13 +119,13 @@ Window {
                 controlButton.text = "Open Vertical Road"
                 trafficlight1.changeState()
                 timer.setTimeout(function() {
-                    road1.startCar()
+                    car1.startCar()
                 }, root.duration + 500)
             } else {
                 controlButton.text = "Open Horizontal Road"
                 trafficlight2.changeState()
                 timer.setTimeout(function() {
-                    road2.startCar()
+                    car2.startCar()
                 },root.duration + 500)
             }
         } else {
@@ -127,18 +137,18 @@ Window {
         if(maincontainer.isRoad1Open === true) {
             maincontainer.isRoad1Open = false
             controlButton.text = "Open Horizontal Road"
-            road1.pauseCar()
+            car1.pauseCar()
             timer.setTimeout(function() {
-                road2.startCar()
+                car2.startCar()
             },root.duration + 500)
         } else {
             maincontainer.isRoad1Open = true
             controlButton.text = "Open Vertical Road"
             trafficlight2.state = "false"
             timer.setTimeout(function() {
-                road1.startCar()
+                car1.startCar()
             },root.duration + 500)
-            road2.pauseCar()
+            car2.pauseCar()
         }
 
         trafficlight1.changeState()
