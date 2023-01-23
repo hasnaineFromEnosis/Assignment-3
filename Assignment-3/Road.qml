@@ -29,13 +29,6 @@ Rectangle {
             x: parent.width - this.width
         }
 
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                root.startCar()
-            }
-        }
-
         SequentialAnimation {
             id: carAnimation
 

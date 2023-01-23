@@ -88,11 +88,6 @@ Rectangle {
         }
     ]
 
-    MouseArea {
-        anchors.fill: parent
-        onClicked: changeState()
-    }
-
     Timer {
         id: timer
         function setTimeout(cb, delayTime) {

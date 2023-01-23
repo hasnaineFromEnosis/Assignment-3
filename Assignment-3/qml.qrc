@@ -6,5 +6,6 @@
         <file>assets/Road.jpg</file>
         <file>Road.qml</file>
         <file>Button.qml</file>
+        <file>Car.qml</file>
     </qresource>
 </RCC>
