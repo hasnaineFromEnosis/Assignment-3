@@ -4,6 +4,7 @@ Rectangle {
     width: 540
     height: width
     color: "transparent"
+    id: root
 
     Rectangle {
         id: container
@@ -31,36 +32,8 @@ Rectangle {
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                container.startCar()
+                root.startCar()
             }
-        }
-
-        Timer {
-            id: timer
-            function setTimeout(cb, delayTime) {
-                timer.interval = delayTime;
-                timer.repeat = false;
-                timer.triggered.connect(cb);
-                timer.triggered.connect(function release () {
-                    timer.triggered.disconnect(cb); // This is important
-                    timer.triggered.disconnect(release); // This is important as well
-                });
-                timer.start();
-            }
-        }
-
-        function startCar() {
-            carAnimation.start()
-
-            timer.setTimeout(function() {
-                pauseCar()
-            }, 3500)
-
-        }
-
-        function pauseCar() {
-            carAnimation.stop()
-            carAnimationStop.start()
         }
 
         SequentialAnimation {
@@ -98,5 +71,14 @@ Rectangle {
                 duration: (container.width - x) * (container.duration / 250)
             }
         }
+    }
+
+    function startCar() {
+        carAnimation.start()
+    }
+
+    function pauseCar() {
+        carAnimation.stop()
+        carAnimationStop.start()
     }
 }
