@@ -28,6 +28,7 @@ Window {
                 width: maincontainer.width * 45 / 600
                 x: maincontainer.width * 20 / 600
                 y: maincontainer.width * 20 / 600
+                state: "go"
 
             }
 
@@ -89,6 +90,10 @@ Window {
         } else {
             maincontainer.isRoad1Open = true
             controlButton.text = "Open Vertical Road"
+            trafficlight2.state = "false"
         }
+
+        trafficlight1.changeState()
+        trafficlight2.changeState()
     }
 }
