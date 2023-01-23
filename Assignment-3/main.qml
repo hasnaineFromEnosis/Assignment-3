@@ -35,6 +35,15 @@ Window {
                 x: maincontainer.width * 20 / 600
                 y: (maincontainer.width * 40 / 600) + height
             }
+
+            Button {
+                id: controlButton
+                width: trafficLightContainer.width
+                x:0
+                y: trafficLightContainer.height - this.height
+
+
+            }
         }
 
         Rectangle {
@@ -51,7 +60,6 @@ Window {
                 height: width
                 anchors.centerIn: roadContainer
                 border.color: "black"
-
 
                 Road {
                     width: roadSubContainer.width
