@@ -144,7 +144,6 @@ Window {
         } else {
             maincontainer.isRoad1Open = true
             controlButton.text = "Open Vertical Road"
-            trafficlight2.state = "false"
             timer.setTimeout(function() {
                 car1.startCar()
             },root.duration + 500)
