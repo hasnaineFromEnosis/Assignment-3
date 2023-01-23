@@ -9,13 +9,14 @@ Window {
     id: root
     property int duration: 3000
     property bool isFirstTime: true
+    color: "#FDFDBD"
 
     Rectangle {
         width: Math.min(parent.width,parent.height * 1.8)
         height: width / 1.8
         id: maincontainer
 
-        border.color: "green"
+        color: "#CDE990"
         property bool isRoad1Open: true
 
         Rectangle {
@@ -24,7 +25,7 @@ Window {
             width: maincontainer.width / 6
             x:0
             y:0
-            border.color: "red"
+            color: "transparent"
 
             TrafficLight {
                 id: trafficlight1
@@ -59,14 +60,15 @@ Window {
             height: maincontainer.height
             anchors.left: trafficLightContainer.right
             x: trafficLightContainer.width
-            border.color: "orange"
+
+            color: "transparent"
 
             Rectangle {
                 id: roadSubContainer
                 width: Math.min(roadContainer.width, roadContainer.height)
                 height: width
                 anchors.centerIn: roadContainer
-                border.color: "black"
+                color: "#AACB73"
 
                 Road {
                     id: road1

@@ -9,8 +9,9 @@ Rectangle {
     signal clicked
 
     width: 116; height: width * (30/116)
-    color: "lightsteelblue"
+    color: "#BFDB38"
     border.color: "slategrey"
+    radius: width * (5 / 116)
 
     Text {
         id: label
