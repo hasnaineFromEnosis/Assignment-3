@@ -28,7 +28,7 @@ Window {
                 width: maincontainer.width * 45 / 600
                 x: maincontainer.width * 20 / 600
                 y: maincontainer.width * 20 / 600
-                state: "go"
+
             }
 
             TrafficLight {
