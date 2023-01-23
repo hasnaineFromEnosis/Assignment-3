@@ -8,6 +8,7 @@ Window {
     title: qsTr("Traffic Light Simulator")
     id: root
     property int duration: 3000
+    property bool isFirstTime: true
 
     Rectangle {
         width: Math.min(parent.width,parent.height * 1.8)
@@ -48,7 +49,7 @@ Window {
                 x:0
                 y: trafficLightContainer.height - this.height
                 text: "Starting..."
-                onClicked: toggleTrafficLight()
+                onClicked: root.start()
             }
         }
 
@@ -96,26 +97,27 @@ Window {
         }
     }
 
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            root.start()
-        }
-    }
+
 
     function start() {
-        if (maincontainer.isRoad1Open == true) {
-            controlButton.text = "Open Vertical Road"
-            trafficlight1.changeState()
-            timer.setTimeout(function() {
-                road1.startCar()
-            }, root.duration)
+        if(root.isFirstTime === true) {
+            root.isFirstTime = false
+            controlButton.focus = true
+            if (maincontainer.isRoad1Open == true) {
+                controlButton.text = "Open Vertical Road"
+                trafficlight1.changeState()
+                timer.setTimeout(function() {
+                    road1.startCar()
+                }, root.duration + 500)
+            } else {
+                controlButton.text = "Open Horizontal Road"
+                trafficlight2.changeState()
+                timer.setTimeout(function() {
+                    road2.startCar()
+                },root.duration + 500)
+            }
         } else {
-            controlButton.text = "Open Horizontal Road"
-            trafficlight2.changeState()
-            timer.setTimeout(function() {
-                road2.startCar()
-            },root.duration)
+            toggleTrafficLight()
         }
     }
 
@@ -124,12 +126,16 @@ Window {
             maincontainer.isRoad1Open = false
             controlButton.text = "Open Horizontal Road"
             road1.pauseCar()
-            road2.startCar()
+            timer.setTimeout(function() {
+                road2.startCar()
+            },root.duration + 500)
         } else {
             maincontainer.isRoad1Open = true
             controlButton.text = "Open Vertical Road"
             trafficlight2.state = "false"
-            road1.startCar()
+            timer.setTimeout(function() {
+                road1.startCar()
+            },root.duration + 500)
             road2.pauseCar()
         }
 
