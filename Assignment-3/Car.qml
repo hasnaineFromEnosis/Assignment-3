@@ -13,6 +13,7 @@ Rectangle {
         x: 0
         y: parent.height * 2 / 5;
         property int duration: 1000
+        property double stopPoint: width * (60.0 / 540.0)
         clip: true
 
         color: "transparent"
@@ -22,7 +23,7 @@ Rectangle {
             source: "assets/Car.png"
             height: parent.height
             width: height * 1.5
-            x: parent.width - this.width
+            x: container.stopPoint
         }
     }
 
@@ -57,7 +58,21 @@ Rectangle {
         NumberAnimation {
             target: carImage
             property: "x"
-            to: parent.width - carImage.width
+            to: parent.width
+            duration: (container.width - x) * (container.duration / 350)
+        }
+
+        NumberAnimation {
+            target: carImage
+            property: "x"
+            to: -carImage.width
+            duration: 0
+        }
+
+        NumberAnimation {
+            target: carImage
+            property: "x"
+            to: container.stopPoint
             duration: (container.width - x) * (container.duration / 250)
         }
     }
